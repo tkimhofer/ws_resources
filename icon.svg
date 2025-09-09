@@ -1,0 +1,43 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 
+    Generative Design Plan:
+    1.  Request Analysis: Create three diagonal neon bars (green, blue, red).
+        The bars should be oriented from bottom-left to top-right.
+    2.  Core Shapes: Use `<rect>` elements for the bars, with rounded corners (`ry`) for a softer, more modern look.
+    3.  Composition: The three bars are grouped and rotated -45 degrees around the center of the canvas. This creates the desired diagonal orientation while ensuring the entire composition is centered.
+    4.  Color Palette: Use highly saturated, bright colors to achieve a "neon" effect: #39FF14 (neon green), #00BFFF (deep sky blue), and #FF1D15 (neon red).
+    5.  "Neon" Effect: A `<filter>` with `<feDropShadow>` is used to simulate a glow. The shadow is offset by 0, blurred, and colored to match the bar's fill, creating a soft aura effect. Three separate filters are defined for each color.
+    6.  Grouping: A main `<g>` tag encapsulates the bars, allowing a single transform to be applied to the entire group for easy positioning and rotation.
+  -->
+
+  <!-- Definitions for the neon glow effects -->
+  <defs>
+    <!-- Filter for the green bar's glow -->
+    <filter id="neon-glow-green" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#39FF14" flood-opacity="0.8"/>
+    </filter>
+    
+    <!-- Filter for the blue bar's glow -->
+    <filter id="neon-glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#00BFFF" flood-opacity="0.8"/>
+    </filter>
+    
+    <!-- Filter for the red bar's glow -->
+    <filter id="neon-glow-red" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#FF1D15" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Group for the bars, rotated -45 degrees around the center (50, 50) -->
+  <g transform="rotate(-45 50 50)">
+    <!-- Neon Blue Bar -->
+    <rect x="28" y="10" width="10" height="80" ry="5" fill="#00BFFF" filter="url(#neon-glow-blue)" />
+    
+    <!-- Neon Green Bar (centered) -->
+    <rect x="45" y="10" width="10" height="80" ry="5" fill="#39FF14" filter="url(#neon-glow-green)" />
+    
+    <!-- Neon Red Bar -->
+    <rect x="62" y="10" width="10" height="80" ry="5" fill="#FF1D15" filter="url(#neon-glow-red)" />
+  </g>
+</svg>
