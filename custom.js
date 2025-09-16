@@ -1,13 +1,22 @@
-function setPlaceholder() {
-  const ta = document.querySelector('textarea[placeholder]');
-  if (ta) ta.placeholder = 'Schreibe deine Nachricht…';
-}
-function replaceWordmark() {
-  // Fallback if any "Chainlit" text node sneaks in
-  document.querySelectorAll('h1, h2, div, span').forEach((el) => {
-    if (el.textContent.trim() === 'Chainlit') el.textContent = 'Duisburger Rat Assistent';
-  });
-}
-const mo = new MutationObserver(() => { setPlaceholder(); replaceWordmark(); });
-mo.observe(document.documentElement, { childList: true, subtree: true });
-setPlaceholder(); replaceWordmark();
+(function () {
+  const NEW_PH = 'Schreibe deine Nachricht…';
+
+  function applyPlaceholder() {
+    // Update all contenteditable inputs that use data-placeholder
+    document.querySelectorAll('[contenteditable="true"][data-placeholder]')
+      .forEach(el => {
+        if (el.getAttribute('data-placeholder') !== NEW_PH) {
+          el.setAttribute('data-placeholder', NEW_PH);
+          // Accessibility nicety
+          el.setAttribute('aria-label', NEW_PH);
+          el.setAttribute('title', NEW_PH);
+        }
+      });
+  }
+
+  // Run now, on DOM ready, and after SPA re-renders
+  applyPlaceholder();
+  document.addEventListener('DOMContentLoaded', applyPlaceholder);
+  const mo = new MutationObserver(applyPlaceholder);
+  mo.observe(document.documentElement, { childList: true, subtree: true });
+})();
