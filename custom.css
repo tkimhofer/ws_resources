@@ -8,3 +8,23 @@
 .cl-avatar {
   border-radius: 12px;
 }
+
+
+/* Hide the big center “Chainlit” wordmark on the empty page */
+.cl-welcome .cl-brand,
+.cl-empty .cl-brand,
+.cl-landing .cl-brand {
+  display: none !important;
+}
+
+/* Optional: show your own title instead */
+.cl-welcome::before,
+.cl-empty::before,
+.cl-landing::before {
+  content: "Duisburger Rat Assistent";
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
