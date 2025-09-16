@@ -1,0 +1,10 @@
+
+:root {
+  --primary: #2D6A4F;
+  --primary-hover: #40916C;
+  --primary-foreground: #ffffff;
+}
+
+.cl-avatar {
+  border-radius: 12px;
+}
